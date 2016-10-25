@@ -22,56 +22,65 @@ $PLOTDIR = argument 3 - the folder to store generated plots
 
 ComputeCPP config file - used to specify a computecpp installation that the SYCL Parallel STL depends on.
 
-  {
-    "configtype":"computecpp",
-    "version":"<human readable version name>",
-    "path":"<path to ComputeCPP install>"
-  }
+
+```
+{
+  "configtype":"computecpp",
+  "version":"<human readable version name>",
+  "path":"<path to ComputeCPP install>"
+}
+```
 
 Parallel STL config file - used to checkout, build and test a copy of the SYCL Parallel STL, or some other git based project that depends on ComputeCPP.
 
-  {
-    "configtype":"repo",
-    "path":"<path to repository>",
-    "branch":"<branch>",
-    "hash":"<git hash for commit>",
-    "buildscript":"<script to build parallel stl>",
-    "copyscript":"<script to copy benchmark excecutables>",
-    "runscript":"<script to run benchmark excecutables>",
-    "ccpp_config":"<configuration file for a ComputeCPP install>"
-  }
+```
+{
+  "configtype":"repo",
+  "path":"<path to repository>",
+  "branch":"<branch>",
+  "hash":"<git hash for commit>",
+  "buildscript":"<script to build parallel stl>",
+  "copyscript":"<script to copy benchmark excecutables>",
+  "runscript":"<script to run benchmark excecutables>",
+  "ccpp_config":"<configuration file for a ComputeCPP install>"
+}
+```
 
 Benchmark config file - used to run a set of benchmarks from a repository (e.g. the SYCL PSTL) on a specific machine/device.
 
-  {
-    "configtype":"benchmark",
-    "hostname":"<hostname of the machine the benchmark should be run on>",
-    "device":"<device to run the benchmark on, e.g. intel:cpu>",
-    "repo_config":"<path to a parallel stl repository configuration>"
-  }
+```
+{
+  "configtype":"benchmark",
+  "hostname":"<hostname of the machine the benchmark should be run on>",
+  "device":"<device to run the benchmark on, e.g. intel:cpu>",
+  "repo_config":"<path to a parallel stl repository configuration>"
+}
+```
 
 Plotting configuration file - used to aggregate performance results from a 
 
-  {
-    "configtype":"plot",
-    "fname":"$PLOTDIR/<filename to save to>",
-    "plotoptions": {
-      "title":"<title for plot>",
-      "ylabel":"<label for y axis>",
-      "xlabel":"<label for x axis>",
-      "xscale":"<scale for x axis, default 'linear', can be 'log'>",
-      "yscale":"<scale for y axis, default 'linear', can be 'log'>",
-      "transforms":
-      {
-        "<datapoint dimension, e.g. time>":"<optional python lambda to apply to datapoints>"
-      }
-    },  
-    "bench_configs": [
-      {
-        "config":"<path to benchmark config file>", 
-        "benchmark":"<name for benchmark program, the results of which to plot>",
-        "name":"<human readable name for key on plot>"
-      }
-      <more configurations...>
-    ]
-  }
+```
+{
+  "configtype":"plot",
+  "fname":"$PLOTDIR/<filename to save to>",
+  "plotoptions": {
+    "title":"<title for plot>",
+    "ylabel":"<label for y axis>",
+    "xlabel":"<label for x axis>",
+    "xscale":"<scale for x axis, default 'linear', can be 'log'>",
+    "yscale":"<scale for y axis, default 'linear', can be 'log'>",
+    "transforms":
+    {
+      "<datapoint dimension, e.g. time>":"<optional python lambda to apply to datapoints>"
+    }
+  },  
+  "bench_configs": [
+    {
+      "config":"<path to benchmark config file>", 
+      "benchmark":"<name for benchmark program, the results of which to plot>",
+      "name":"<human readable name for key on plot>"
+    }
+    <more configurations...>
+  ]
+}
+```
