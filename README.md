@@ -35,7 +35,7 @@ Parallel STL config file - used to checkout, build and test a copy of the SYCL P
     "path":"<path to repository>",
     "branch":"<branch>",
     "hash":"<git hash for commit>",
-    "buildscript":"$CONFIGDIR/<script to build parallel stl>",
+    "buildscript":"<script to build parallel stl>",
     "copyscript":"<script to copy benchmark excecutables>",
     "runscript":"<script to run benchmark excecutables>",
     "ccpp_config":"<configuration file for a ComputeCPP install>"
@@ -68,7 +68,7 @@ Plotting configuration file - used to aggregate performance results from a
     },  
     "bench_configs": [
       {
-        "config":"$CONFIGDIR/<path to benchmark config file>", 
+        "config":"<path to benchmark config file>", 
         "benchmark":"<name for benchmark program, the results of which to plot>",
         "name":"<human readable name for key on plot>"
       }
