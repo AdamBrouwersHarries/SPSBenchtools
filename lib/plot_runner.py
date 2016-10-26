@@ -19,18 +19,23 @@ def newest_subdir(path):
 
 def parse_result_file(fname):
   print "Parsing "+fname
-  datlines = []
   dat = []
   with open(fname) as f:
     for l in f:
       if "ComputeCpp" not in l and l.rstrip() != "":
-        datlines.append(l)
         try:
           bench,duff,size,time = l.rstrip().split(" ")
           dat.append((size, time))
         except Exception, e:
-          print "Failed to parse " + l
-          raise e
+          if "terminate" in l or "what()" in l:
+            print "Found error, finishing parse."
+            break
+          else:
+            print "Failed to parse " + l
+            raise e
+  if dat == []:
+    print "Failed to parse any data from file: " + fname
+    exit(1)
   return dat
 
 class DataSet(object):
@@ -75,6 +80,7 @@ def check(self, extrargs=[]):
   print "Checking plot configuration"
 
 def run(self, extrargs=[]):
+  print "running plotrunner"
   datasets = [DataSet(c) for c in self.bench_configs] 
   for c in datasets:
     print c
