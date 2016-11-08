@@ -2,8 +2,12 @@ from configuration import *
 from repo_builder import *
 import platform
 import os
-# for BenchConfiguration
 
+# Benchmark configuration execution methods
+
+# Check a benchmark configuration, to ensure that it is valid and ready to run
+# note, this currently just checks that the hostname matches - it coudld do
+# a lot more...
 def check(self, extrargs=[]):
   print "Checking benchmark configuration"
   if self.hostname != platform.uname()[1]:
@@ -13,7 +17,10 @@ def check(self, extrargs=[]):
     exit(1)
 
 
-
+# Run the given benchmark configuration, based on the shell scripts that it's
+# configured with. This includes running the repository configurations 
+# (recursively), and probably compiling/building, copying build artefacts, 
+# and then running the built executables. 
 def run(self, extrargs=[]):
   print "Running benchmark configuration"
   self.check(extrargs)
@@ -34,7 +41,7 @@ def run(self, extrargs=[]):
   rprs = self.repo_config.run_script
   call([rprs, self.results_folder, self.device] + extrargs)
 
-
+# TODO: implement more clever "hasrun" checking...
 def hasrun(self, extrargs=[]):
   print "Has the benchmark configuration run?"
   return False
