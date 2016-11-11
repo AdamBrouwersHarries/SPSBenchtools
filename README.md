@@ -8,6 +8,18 @@ _Note: This tool is primarily intended for internal (i.e. to Codeplay Software) 
 
 The SYCL Parallel STL ships with a number of benchmark applications for the various algorithms provided, as well as benchmark applications for their sequential CPU equivalents. Although the benchmakrs are invaluable for providing performance information about specific instances of the PSTL, it would also be desirable to be able to compare between (say) different versions of ComputeCPP, or specific algorithm implementations, to avoid performance regressions and to help tune the Parallel STL's implementation.
 
+## Prerequisites
+
+ComputeCPP/SPSTL dependencies:
+  - The SYCL Parallel STL (e.g. from https://github.com/KhronosGroup/SyclParallelSTL)
+  - The ComputeCPP sdk, e.g. from https://github.com/codeplaysoftware/computecpp-sdk/
+  - A ComputeCPP implementation (e.g. from https://www.codeplay.com/products/computesuite/computecpp)
+
+Python specific:
+  - python 2.7
+  - python packages pandas, numpy, matplotlib and seaborn as well as their dependencies, for plotting
+  - [GitPython](https://github.com/gitpython-developers/GitPython) - for configuration management in the ParallelSTL repository
+
 ## Usage
 
 The tools in this repository are designed to be used to 1) configure and build the Parallel STL (or other library that depends on ComputeCPP), 2) Run a benchmark set from said library, and then 3) Plot performance results gathered in step 2. This repository does not include the configuration scripts required to specify what/how to run the process, but some examples are given below.
